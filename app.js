@@ -5,6 +5,8 @@ const tl = gsap.timeline({
 const home = document.querySelector(".home");
 // notifications animation
 const notifications = document.querySelector(".notifications");
+// messages animation
+const messages = document.querySelector(".messages");
 
 // feather starts at center
 gsap.set(".feather", {scale: 0, transformOrigin: "center"});
@@ -25,4 +27,14 @@ notifications.addEventListener("click", () => {
     gsap.fromTo(".bell", {rotation: -8}, {rotation: 0, duration: 2, ease: "elastic.out(5, 0.2)"});
     gsap.fromTo(".ringer", {rotation: -3, x: 0.5}, {rotation: 0, x: 0, duration: 2, ease: "elastic.out(5, 0.2)"});
     gsap.fromTo(".wave", {scale: 0, opacity: 1}, {scale: 1.3, opacity: 0, duration: 1});
+});
+
+// Messages
+gsap.set(".flap", {transformOrigin: "top"});
+messages.addEventListener("click", () => {
+    tl.fromTo(".messages-svg", {scale: 1}, {scale: 0.9, yoyo: true, repeat: 1}, "<50%");
+    tl.fromTo(".flap", {scale: 1}, {scale: -1}, "<50%");
+    // tl.fromTo(".messages-svg", {})
+    tl.fromTo(".note", {y: 0, opacity: 1}, {y: -40, opacity: 0, duration: 0.75});
+    tl.to(".flap", {scale: 1}, "<50%")
 });
